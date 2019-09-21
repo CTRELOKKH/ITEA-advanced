@@ -5,12 +5,14 @@ from functools import total_ordering
 class Account:
     """A simple account class"""
 
-    def __init__(self, owner, amount=0):
+    def __init__(self, surname, name, amount=0):
         """
         This is the constructor that lets us create
         objects from this class
         """
-        self.owner = owner
+        self.surname = surname
+        self.name = name
+        self.owner = surname
         self.amount = amount
         self._transactions = []
 
@@ -46,9 +48,17 @@ class Account:
     def __lt__(self, other):
         return self.balance < other.balance
 
+    def __add__(self, other):
+        if self.surname == other.surname:
+            #self.balance=self.balance+other.balance
+            print("12345")
+            return 'Account family ({!r}, has {!r})'.format(self.surname, self.balance+other.balance)
 
-acc = Account('bob')  # default amount = 0
-acc = Account('bob', 10)
+
+
+acc = Account('bob', 'marley', 100)  # default amount = 0
+acc1 = Account('bob','marley111', 10 )
+print(acc+acc1)
 
 # __repr__ __str__
 str(acc)
@@ -66,6 +76,7 @@ acc.add_transaction(-20)
 acc.add_transaction(30)
 #
 acc.balance
+
 
 # __len__, __getitem__, __reversed__
 
